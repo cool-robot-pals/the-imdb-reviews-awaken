@@ -31,7 +31,7 @@ const buildUpFanta = $sw => {
 	const wordHtml = word
 		.split(" ")
 		.map(
-			w => `<span data-short="${w.length <= 4 || w.includes(`'`)}">${w}</span>`
+			w => `<span data-short="${w.length <= 3 || w.includes(`'`)}">${w}</span>`
 		)
 		.join(" ");
 	$sw.querySelector("x-txt").innerHTML = wordHtml;

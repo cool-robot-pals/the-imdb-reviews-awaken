@@ -52,7 +52,7 @@ x-bop h1 img {
 }
 
 x-bop [data-short="true"] {
-	font-size: 0.8em;
+	font-size: 0.7em;
 	position: relative;
 	top: -2%;
 }
@@ -64,7 +64,7 @@ x-bop x-txt {
 	--multiplier: max(calc(var(--length) / 100), 0.5);
 	font-size: calc(2.5em / var(--multiplier));
 	width: 70%;
-	transform: translateX(22.5%) translateY(-2rem);
+	transform: translateX(22.5%) translateY(-1rem);
 }
 
 x-wars {
