@@ -13,6 +13,7 @@
 }
 
 :root {
+	--length: 100;
 	--logo: #c92027;
 	--bg: #000;
 	--txt: #fff;
@@ -41,6 +42,7 @@ x-bop {
 
 x-bop {
 	font-family: "venom";
+	font-size: 16px;
 	color: hsl(var(--hue, 51), 100%, 75%);
 }
 
@@ -61,8 +63,8 @@ x-bop x-txt {
 	text-transform: uppercase;
 	text-align: center;
 	line-height: 1.1;
-	--multiplier: max(calc(var(--length) / 100), 0.5);
-	font-size: calc(2.5em / var(--multiplier));
+	--multiplier: calc(var(--length) / 140);
+	font-size: calc(2.5em / (0.5 + (var(--multiplier) / 2)));
 	width: 70%;
 	transform: translateX(22.5%) translateY(-1rem);
 }
