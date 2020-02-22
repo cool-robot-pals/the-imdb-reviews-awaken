@@ -60,9 +60,11 @@ x-bop [data-short="true"] {
 x-bop x-txt {
 	text-transform: uppercase;
 	text-align: center;
-	font-size: 2.5em;
-	width: 60%;
-	transform: translateX(22.5%) translateY(-0.75em);
+	line-height: 1.1;
+	--multiplier: max(calc(var(--length) / 100), 0.5);
+	font-size: calc(2.5em / var(--multiplier));
+	width: 70%;
+	transform: translateX(22.5%) translateY(-2rem);
 }
 
 x-wars {

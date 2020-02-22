@@ -3,6 +3,11 @@ import movies from "../bin/movies";
 const randomArrKey = items => items[Math.floor(Math.random() * items.length)];
 
 let movie = randomArrKey(Object.keys(movies));
+const hash = window.location.hash.substr(1);
+
+if (movies[hash]) {
+	movie = hash;
+}
 
 const wordList = JSON.parse(
 	movie === "sw"
@@ -22,6 +27,7 @@ const buildUpFanta = $sw => {
 		$sw.style.setProperty("--fill", "white");
 	}
 	$sw.style.setProperty("--hue", hue);
+	$sw.style.setProperty("--length", word.length);
 	const wordHtml = word
 		.split(" ")
 		.map(
