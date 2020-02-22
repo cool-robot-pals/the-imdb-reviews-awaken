@@ -7,6 +7,11 @@
 	src: url("./font/tekton.otf");
 }
 
+@font-face {
+	font-family: "venom";
+	src: url("./font/venom.ttf");
+}
+
 :root {
 	--logo: #c92027;
 	--bg: #000;
@@ -18,8 +23,8 @@
 	padding: 0;
 }
 
-body {
-	font-family: "itc";
+x-wars,
+x-bop {
 	background: var(--bg);
 	color: var(--txt);
 	width: 1280px;
@@ -32,11 +37,41 @@ body {
 	box-sizing: border-box;
 	text-align: center;
 	-webkit-font-smoothing: antialiased;
+}
+
+x-bop {
+	font-family: "venom";
+	color: hsl(var(--hue, 51), 100%, 75%);
+}
+
+x-bop h1 {
+	width: 80%;
+}
+x-bop h1 img {
+	width: 100%;
+}
+
+x-bop [data-short="true"] {
+	font-size: 0.8em;
+	position: relative;
+	top: -2%;
+}
+
+x-bop x-txt {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 2.5em;
+	width: 60%;
+	transform: translateX(22.5%) translateY(-0.75em);
+}
+
+x-wars {
+	font-family: "itc";
 	background-image: url(stars.png);
 	background-size: cover;
 }
 
-h1 {
+x-wars h1 {
 	font-family: "helv";
 	text-transform: uppercase;
 	font-size: 120px;
@@ -45,28 +80,24 @@ h1 {
 	letter-spacing: -0.03em;
 }
 
-h1 span {
+x-wars h1 span {
 	font-size: 0.3em;
 	vertical-align: text-top;
 	line-height: 35px;
 }
 
-h1 strong {
+x-wars h1 strong {
 	color: var(--red);
 	font-weight: inherit;
 }
 
-h2 {
+x-wars h2 {
 	font-size: 70px;
 	line-height: calc(70px * 1.1);
 	margin-top: 30px;
 }
 
-h2 x-guys-word {
-	text-transform: uppercase;
-}
-
-x-txt {
+x-wars x-txt {
 	text-transform: uppercase;
 	margin: 0.5em -3em 0.25em;
 	display: block;
@@ -77,7 +108,7 @@ x-txt {
 	padding-left: 0.25em;
 }
 
-x-wars {
+x-wars x-wrap {
 	display: block;
 	width: 50%;
 }

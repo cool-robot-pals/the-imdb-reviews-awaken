@@ -20,7 +20,7 @@
 		"postinstall": "node ./bin/scrape.js",
 		"test": "jest",
 		"start": "parcel code/index.html",
-		"scrape": "node scrape/scrape.js"
+		"scrape": "node ./bin/scrape.js"
 	},
 	"repository": {
 		"type": "git",

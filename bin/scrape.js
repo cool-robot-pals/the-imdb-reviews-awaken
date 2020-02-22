@@ -2,9 +2,10 @@ const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const { writeFileSync } = require("fs");
 const path = require("path");
+const movies = require("./movies");
 
-const get = async paginationKey => {
-	const url = `https://m.imdb.com/title/tt2527338/reviews/_ajax?sort=submissionDate&dir=desc${
+const get = async (movie, paginationKey) => {
+	const url = `https://m.imdb.com/title/${movie}/reviews/_ajax?sort=userRating&dir=asc${
 		paginationKey ? `&paginationKey=${paginationKey}` : "&dsfdsf"
 	}`;
 	const $ = await fetch(url)
@@ -43,13 +44,13 @@ const get = async paginationKey => {
 	return { headings, more };
 };
 
-const getALotOfThem = async () => {
+const getALotOfThem = async movie => {
 	const topFetch = 20;
 	let i = 0;
 	const savageGet = async paginationKey => {
 		i++;
 		console.log(`getting ${i}/${topFetch}`);
-		const { headings, more } = await get(paginationKey);
+		const { headings, more } = await get(movie, paginationKey);
 		if (more && i < topFetch) {
 			const moreData = await savageGet(more);
 			return {
@@ -63,18 +64,23 @@ const getALotOfThem = async () => {
 	return (await savageGet()).headings;
 };
 
-const cacheJsonAt = path.resolve(__dirname, "..", "dest", "cache.json");
+const cacheJsonAt = movie =>
+	path.resolve(__dirname, "..", "dest", `cache-${movie}.json`);
 
 const main = async () => {
-	let currentHeadings = [];
-	try {
-		currentHeadings = require(cacheJsonAt);
-	} catch {}
-	const newHeadings = await getALotOfThem();
-	writeFileSync(
-		cacheJsonAt,
-		JSON.stringify([...new Set([...currentHeadings, ...newHeadings])])
-	);
+	for (let [movie, path] of Object.entries(movies)) {
+		console.log("> " + movie.toUpperCase());
+		const cacheAt = cacheJsonAt(movie);
+		let currentHeadings = [];
+		try {
+			currentHeadings = require(cacheAt);
+		} catch {}
+		const newHeadings = await getALotOfThem(path);
+		writeFileSync(
+			cacheAt,
+			JSON.stringify([...new Set([...currentHeadings, ...newHeadings])])
+		);
+	}
 };
 
 main();
